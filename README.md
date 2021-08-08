@@ -29,14 +29,14 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/opt/stats
-ExecStart=stats.py
-User=root
-Restart=always
+ExecStart=/opt/statsstats.py
+Restart=on-failure
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
 ```
-Then tell systemd to re-scan the unit files with `systemctl daemon-reload`, and start this unit using `systemctl enable --now stats`.
+Then tell systemd to re-scan the unit files with `sudo systemctl daemon-reload`, and start this unit using `sudo systemctl enable --now stats`.
 
 ## Acknowledgements
 
