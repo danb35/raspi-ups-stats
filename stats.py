@@ -118,11 +118,7 @@ while True:
     
     bus = smbus2.SMBus(DEVICE_BUS)
 
-    aReceiveBuf = []
-    aReceiveBuf.append(0x00)   # Placeholder
-
-    for i in range(1,255):
-        aReceiveBuf.append(bus.read_byte_data(DEVICE_ADDR, i))
+    aReceiveBuf = bus.read_i2c_block_data(DEVICE_ADDR, 0, 32)
     
     if (aReceiveBuf[8] << 8 | aReceiveBuf[7]) > 4000:
         chargeStat = 'Charging USB C'
