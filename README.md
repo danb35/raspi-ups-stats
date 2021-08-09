@@ -19,23 +19,8 @@ Change to a convenient directory and run `git clone https://github.com/danb35/ra
 ## Auto start on boot
 Create `/opt/stats/`, and copy `PixelOperator.ttf` and `stats.py` there.
 
-You'll then need to create a systemd unit file.  Run `sudo nano /etc/systemd/system/stats.service` and enter the following contents:
-```
-[Unit]
-Description=Stats service
-After=syslog.target
-After=network.target
+Then put the systemd unit file in the correct place: `sudo cp stats.service /etc/systemd/system/`.
 
-[Service]
-Type=simple
-WorkingDirectory=/opt/stats
-ExecStart=/opt/stats/stats.py
-Restart=on-failure
-RestartSec=10
-
-[Install]
-WantedBy=multi-user.target
-```
 Then tell systemd to re-scan the unit files with `sudo systemctl daemon-reload`, and start this unit using `sudo systemctl enable --now stats`.
 
 ## Acknowledgements

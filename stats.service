@@ -1,0 +1,15 @@
+[Unit]
+Description=Stats service
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/stats
+ExecStart=/opt/stats/stats.py
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+
