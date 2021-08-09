@@ -29,7 +29,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/opt/stats
-ExecStart=/opt/statsstats.py
+ExecStart=/opt/stats/stats.py
 Restart=on-failure
 RestartSec=10
 
